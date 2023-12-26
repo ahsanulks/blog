@@ -8,7 +8,11 @@
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {}
 	},
-
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.zshrc,target=/home/vscode/.zshrc,type=bind,consistency=cached"
+	],
 	"customizations": {
 		"vscode": {
 			"settings": {
