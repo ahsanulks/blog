@@ -1,15 +1,16 @@
 server:
   http:
     addr: 0.0.0.0:8000
-    timeout: 1s
+    timeout: 1
   grpc:
     addr: 0.0.0.0:9000
-    timeout: 1s
-data:
-  database:
-    driver: postgresql
-    source: postgres:postgres@tcp(127.0.0.1:3306)/blog
-  redis:
-    addr: 127.0.0.1:6379
-    read_timeout: 0.2s
-    write_timeout: 0.2s
+    timeout: 1
+  open_api:
+    addr: 0.0.0.0:8080
+    timeout: 1
+db:
+  host: "localhost"
+  port: 5432
+  username: "postgres"
+  password: "postgres"
+  name: "blog"

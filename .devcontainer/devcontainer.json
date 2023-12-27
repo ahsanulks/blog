@@ -15,6 +15,14 @@
 	],
 	"customizations": {
 		"vscode": {
+			"extensions": [
+				"liuchao.go-struct-tag",
+				"eamodio.gitlens",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"yokoe.vscode-postfix-go",
+				"tooltitudeteam.tooltitude"
+			],
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "zsh",
 				"terminal.integrated.profiles.linux": {
