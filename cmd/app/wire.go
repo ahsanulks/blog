@@ -8,9 +8,9 @@ package main
 import (
 	"app/configs"
 	"app/internal/infra"
-	"app/internal/server"
 	"app/internal/service"
 	"app/internal/usecase"
+	"app/server"
 
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"

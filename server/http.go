@@ -4,6 +4,8 @@ import (
 	v1 "app/api/helloworld/v1"
 	"app/configs"
 	"app/internal/service"
+	"embed"
+	"io/fs"
 	nethttp "net/http"
 	"time"
 
@@ -12,6 +14,9 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"github.com/gorilla/mux"
 )
+
+//go:embed dist
+var content embed.FS
 
 // NewHTTPServer new an HTTP server.
 func NewHTTPServer(c *configs.ApplicationConfig, greeter *service.GreeterService, logger log.Logger) *http.Server {
@@ -36,7 +41,10 @@ func NewHTTPServer(c *configs.ApplicationConfig, greeter *service.GreeterService
 
 func handleSwaggerUI(file []byte) nethttp.Handler {
 	router := mux.NewRouter()
+	fsys, _ := fs.Sub(content, "dist")
+	sh := nethttp.StripPrefix("/q/swagger-ui", nethttp.FileServer(nethttp.FS(fsys)))
 	router.HandleFunc("/q/openapi.yaml", byteHandler(file))
+	router.PathPrefix("/q/swagger-ui").Handler(sh)
 	return router
 }
 
