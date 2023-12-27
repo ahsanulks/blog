@@ -21,7 +21,9 @@
 				"GitHub.copilot",
 				"GitHub.copilot-chat",
 				"yokoe.vscode-postfix-go",
-				"tooltitudeteam.tooltitude"
+				"tooltitudeteam.tooltitude",
+				"humao.rest-client",
+				"zxh404.vscode-proto3"
 			],
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "zsh",
