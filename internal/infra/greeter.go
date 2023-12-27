@@ -3,7 +3,7 @@ package infra
 import (
 	"context"
 
-	"blog/internal/biz"
+	"app/internal/usecase"
 
 	"github.com/go-kratos/kratos/v2/log"
 )
@@ -21,22 +21,22 @@ func NewGreeterRepo(db *PostgresDB, logger log.Logger) *GreeterRepo {
 	}
 }
 
-func (r *GreeterRepo) Save(ctx context.Context, g *biz.Greeter) (*biz.Greeter, error) {
+func (r *GreeterRepo) Save(ctx context.Context, g *usecase.Greeter) (*usecase.Greeter, error) {
 	return g, nil
 }
 
-func (r *GreeterRepo) Update(ctx context.Context, g *biz.Greeter) (*biz.Greeter, error) {
+func (r *GreeterRepo) Update(ctx context.Context, g *usecase.Greeter) (*usecase.Greeter, error) {
 	return g, nil
 }
 
-func (r *GreeterRepo) FindByID(context.Context, int64) (*biz.Greeter, error) {
+func (r *GreeterRepo) FindByID(context.Context, int64) (*usecase.Greeter, error) {
 	return nil, nil
 }
 
-func (r *GreeterRepo) ListByHello(context.Context, string) ([]*biz.Greeter, error) {
+func (r *GreeterRepo) ListByHello(context.Context, string) ([]*usecase.Greeter, error) {
 	return nil, nil
 }
 
-func (r *GreeterRepo) ListAll(context.Context) ([]*biz.Greeter, error) {
+func (r *GreeterRepo) ListAll(context.Context) ([]*usecase.Greeter, error) {
 	return nil, nil
 }

@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/go-postgres
 {
-	"name": "Blog",
+	"name": "template-go-project",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -10,7 +10,6 @@
 	},
 	"mounts": [
 		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
-		"source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
 		"source=${localEnv:HOME}/.zshrc,target=/home/vscode/.zshrc,type=bind,consistency=cached"
 	],
 	"customizations": {
@@ -23,7 +22,8 @@
 				"yokoe.vscode-postfix-go",
 				"tooltitudeteam.tooltitude",
 				"humao.rest-client",
-				"zxh404.vscode-proto3"
+				"zxh404.vscode-proto3",
+				"ms-azuretools.vscode-docker"
 			],
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "zsh",

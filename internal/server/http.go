@@ -1,9 +1,9 @@
 package server
 
 import (
-	v1 "blog/api/helloworld/v1"
-	"blog/configs"
-	"blog/internal/service"
+	v1 "app/api/helloworld/v1"
+	"app/configs"
+	"app/internal/service"
 	nethttp "net/http"
 	"time"
 

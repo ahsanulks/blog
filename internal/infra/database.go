@@ -1,7 +1,7 @@
 package infra
 
 import (
-	"blog/configs"
+	"app/configs"
 	"context"
 	"fmt"
 
@@ -14,7 +14,7 @@ type PostgresDB struct {
 }
 
 func NewPostgresDB(c *configs.DBConfig, logger log.Logger) (*PostgresDB, func()) {
-	dsn := fmt.Sprintf("postgresql://%s:%s@%s:%d/%s?charset=utf8&parseTime=True&loc=Local", c.Username, c.Password, c.Host, c.Port, c.Name)
+	dsn := fmt.Sprintf("postgresql://%s:%s@%s:%d/%s", c.User, c.Password, c.Hostname, c.Port, c.DB)
 	conn, err := pgxpool.New(
 		context.Background(),
 		dsn,
@@ -22,6 +22,10 @@ func NewPostgresDB(c *configs.DBConfig, logger log.Logger) (*PostgresDB, func())
 	if err != nil {
 		panic("cannot connect to db")
 	}
+	if err := conn.Ping(context.TODO()); err != nil {
+		panic("cannot ping db")
+	}
+	logger.Log(log.LevelInfo, "msg", "connecting to db")
 	cleanup := func() {
 		logger.Log(log.LevelInfo, "closing db connection")
 		conn.Close()

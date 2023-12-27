@@ -9,8 +9,7 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceRoot}/cmd/blog/",
-            "preLaunchTask": "go generate"
+            "program": "${workspaceRoot}/cmd/app/"
         },
     ]
 }

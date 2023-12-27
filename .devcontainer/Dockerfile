@@ -9,13 +9,15 @@ RUN apt-get update && apt install -y protobuf-compiler
 USER vscode
 RUN go install github.com/go-kratos/kratos/cmd/kratos/v2@latest && kratos upgrade
 RUN go install github.com/pressly/goose/v3/cmd/goose@latest
+RUN go install github.com/cosmtrek/air@latest
 
 # USER root
 
 ENV GOPROXY="https://goproxy.io,direct"
 
 # GOOSE ENV
+ARG DB_NAME
 ENV GOOSE_DRIVER=postgres
-ENV GOOSE_DBSTRING=postgres://postgres:postgres@localhost:5432/blog
+ENV GOOSE_DBSTRING=postgres://postgres:postgres@localhost:5432/$DB_NAME
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1

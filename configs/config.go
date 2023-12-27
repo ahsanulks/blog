@@ -3,6 +3,8 @@ package configs
 import (
 	_ "embed"
 	"fmt"
+	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
 
@@ -15,8 +17,8 @@ var OpenAPI []byte
 var conf *ApplicationConfig
 
 type ApplicationConfig struct {
-	Server Server   `mapstructure:"server"`
-	DB     DBConfig `mapstructure:"db"`
+	Server   Server   `mapstructure:"server"`
+	Postgres DBConfig `mapstructure:"postgres"`
 }
 
 type Server struct {
@@ -26,11 +28,11 @@ type Server struct {
 }
 
 type DBConfig struct {
-	Host     string `mapstructure:"host"`
-	Username string `mapstructure:"username"`
+	Hostname string `mapstructure:"hostname"`
+	User     string `mapstructure:"user"`
 	Password string `mapstructure:"password"`
 	Port     int    `mapstructure:"port"`
-	Name     string `mapstructure:"name"`
+	DB       string `mapstructure:"db"`
 }
 
 type ServerConfig struct {
@@ -38,24 +40,28 @@ type ServerConfig struct {
 	Timeout int    `mapstructure:"timeout"`
 }
 
+var basepath string
+
+func init() {
+	_, b, _, _ := runtime.Caller(0)
+	basepath = filepath.Dir(b)
+}
+
 func NewConfig() *ApplicationConfig {
 	once := new(sync.Once)
 	once.Do(func() {
-		data := ApplicationConfig{}
 		viper.SetConfigName("config")
 		viper.SetConfigType("yaml")
-		viper.AddConfigPath("../../configs")
+		viper.AddConfigPath(basepath)
 		viper.AutomaticEnv()
 		viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 		if err := viper.ReadInConfig(); err != nil {
 			panic(fmt.Errorf("failed to read config file: %s", err))
 		}
 
-		if err := viper.Unmarshal(&data); err != nil {
+		if err := viper.Unmarshal(&conf); err != nil {
 			panic(fmt.Errorf("vailed to load config %s", err))
 		}
-
-		conf = &data
 	})
 	return conf
 }
