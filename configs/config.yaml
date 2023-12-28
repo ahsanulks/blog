@@ -5,9 +5,8 @@ server:
   grpc:
     addr: 0.0.0.0:9000
     timeout: 1
-  open_api:
-    addr: 0.0.0.0:8080
-    timeout: 1
+
+# will get value from env
 postgres:
   hostname: 
   port: 

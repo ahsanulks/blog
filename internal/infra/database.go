@@ -27,7 +27,7 @@ func NewPostgresDB(c *configs.DBConfig, logger log.Logger) (*PostgresDB, func())
 	}
 	logger.Log(log.LevelInfo, "msg", "connecting to db")
 	cleanup := func() {
-		logger.Log(log.LevelInfo, "closing db connection")
+		logger.Log(log.LevelInfo, "msg", "closing db connection")
 		conn.Close()
 	}
 	return &PostgresDB{

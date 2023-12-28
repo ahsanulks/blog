@@ -15,9 +15,15 @@ RUN go install github.com/cosmtrek/air@latest
 
 ENV GOPROXY="https://goproxy.io,direct"
 
-# GOOSE ENV
-ARG DB_NAME
+# DATABASE ENV
+ARG POSTGRES_DB
+ARG POSTGRES_USER
+ARG POSTGRES_PASSWORD
+ARG POSTGRES_HOSTNAME
+ARG POSTGRES_PORT
+
 ENV GOOSE_DRIVER=postgres
-ENV GOOSE_DBSTRING=postgres://postgres:postgres@localhost:5432/$DB_NAME
+ENV GOOSE_DBSTRING=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOSTNAME:$POSTGRES_PORT/$POSTGRES_DB
+ENV GOOSE_MIGRATION_DIR=./migrations
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
