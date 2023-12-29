@@ -1,50 +1,27 @@
-# Kratos Project Template
+#  Template Go Project
 
-## Install Kratos
-```
-go install github.com/go-kratos/kratos/cmd/kratos/v2@latest
-```
-## Create a service
-```
-# Create a template project
-kratos new server
+## Feature
+- generate http, grpc and swagger api in single command
+- build in migration tools
+- minimize project setup
+- optimize with vscode IDE
 
-cd server
-# Add a proto template
-kratos proto add api/server/server.proto
-# Generate the proto code
-kratos proto client api/server/server.proto
-# Generate the source code of service by proto file
-kratos proto server api/server/server.proto -t internal/service
+## Prerequsite
+- [Docker](https://docs.docker.com/engine/install/)
+- [VSCODE](https://code.visualstudio.com/download) (recommend)
+- [DEVCONTAINER Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-go generate ./...
-go build -o ./bin/ ./...
-./bin/server -conf ./configs
-```
-## Generate other auxiliary files by Makefile
-```
-# Download and update dependencies
-make init
-# Generate API files (include: pb.go, http, grpc, validate, swagger) by proto file
-make api
-# Generate all files
-make all
-```
-## Automated Initialization (wire)
-```
-# install wire
-go get github.com/google/wire/cmd/wire
+## Usage
+- Open VSCODE
+- Install devcontainer
+- Press `F1` and choose `Reopen in Container`
+- Waiting until process is done
+- Enjoy
 
-# generate wire
-cd cmd/server
-wire
-```
+## Build in tools
+- [Goose](https://github.com/pressly/goose)
+- [Kratos](https://github.com/go-kratos/kratos)
+- [Air](https://github.com/cosmtrek/air)
 
-## Docker
-```bash
-# build
-docker build -t <your-docker-image-name> .
-
-# run
-docker run --rm -p 8000:8000 -p 9000:9000 -v </path/to/your/configs>:/data/conf <your-docker-image-name>
-```
+## FAQ
+###
